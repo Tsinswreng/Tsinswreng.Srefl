@@ -1,34 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Tsinswreng.CsStrAcc.DictMapper.Attributes;
-System.Console.WriteLine("Hello, World!");
+﻿using Microsoft.Extensions.DependencyInjection;
+using Tsinswreng.CsTreeTest;
 
+namespace Tsinswreng.CsStrAcc.Test;
 
+internal class Program{
+	public static async Task Main(string[] args){
+		IServiceCollection svcColct = new ServiceCollection();
+		var mgr = StrAccTestMgr.Inst;
+		_ = mgr.InitSvc(svcColct);
 
-
-namespace Root{
-
-
-namespace NsA{
-	public  partial class ClassA{
-		public int Int{get;set;} = 1;
+		ITestExecutor executor = new TreeTestExecutor();
+		await executor.RunEtPrint(mgr.TestNode);
 	}
 }
-
-namespace NsB{
-	public  partial class ClassB{
-		public string String{get;set;} = "String";
-	}
-}
-
-
-[DictType(typeof(NsA.ClassA))]
-[DictType(typeof(NsB.ClassB))]
-public partial class UserDictCtx{
-protected static UserDictCtx? _Inst = null;
-public static UserDictCtx Inst => _Inst??= new UserDictCtx();
-
-}
-
-
-}
-
