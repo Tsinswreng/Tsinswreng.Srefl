@@ -1,0 +1,22 @@
+namespace Tsinswreng.CsStrAcc.Ctor.Attributes;
+
+using System;
+
+
+/// 名須潙DictType、叵作DictTypeAttribute
+/// 緣用及nameof、斯類ʹ名ˋ 須同於 作特性ⁿ引用旹厎
+/// 如引用時用[DictType(...)]則斯類ʹ名則須潙DictType、叵作DictTypeAttribute
+
+[AttributeUsage(
+	AttributeTargets.Class|AttributeTargets.Struct
+	,AllowMultiple = true
+	,Inherited = false
+)]
+public  partial class Ctor:Attribute{
+
+	public str AppendedCode = "";
+
+	public Ctor(){
+
+	}
+}
