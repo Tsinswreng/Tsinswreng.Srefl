@@ -38,12 +38,12 @@ public static class ExtnIPropAccessorMgr{
 		
 		public IPropDict ToPropDict(obj? O, Type Target){
 			var accessor = z.Type_PropAccessor[Target];
-			return new PropDict(accessor, Target);
+			return new PropDict(accessor, O);
 		}
 		public IPropDict ToPropDict<T>(T O){
 			var Target = typeof(T);
 			var accessor = z.Type_PropAccessor[Target];
-			return new PropDict(accessor, Target);
+			return new PropDict(accessor, O);
 		}
 	}
 }
