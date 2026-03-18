@@ -7,7 +7,7 @@ internal class Program{
 	public static async Task Main(string[] args){
 		IServiceCollection svcColct = new ServiceCollection();
 		var mgr = StrAccTestMgr.Inst;
-		_ = mgr.InitSvc(svcColct);
+		_ = mgr.InitSvc(svcColct, sc => sc.BuildServiceProvider());
 
 		ITestExecutor executor = new TreeTestExecutor();
 		await executor.RunEtPrint(mgr.TestNode);
