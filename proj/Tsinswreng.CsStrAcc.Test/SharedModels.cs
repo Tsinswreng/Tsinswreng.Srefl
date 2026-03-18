@@ -73,5 +73,6 @@ namespace Tsinswreng.CsStrAcc.Test{
 	[StrAccType(typeof(Models.NestedTypeContainer.NestedPublicModel))]
 	[StrAccType(typeof(Models.NestedTypeContainer.NestedInternalModel))]
 	public partial class SharedModelStrAccRegistry{
+		public static SharedModelStrAccRegistry Inst=>field??=new SharedModelStrAccRegistry();
 	}
 }

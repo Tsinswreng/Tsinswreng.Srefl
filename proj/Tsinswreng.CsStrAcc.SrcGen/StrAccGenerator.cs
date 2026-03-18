@@ -72,10 +72,6 @@ public sealed class StrAccGenerator: ISourceGenerator{
 		sb.AppendLine("\t\tget => this.PropAccessorMgr.Type_PropAccessor;");
 		sb.AppendLine("\t\tset => this.PropAccessorMgr.Type_PropAccessor = value;");
 		sb.AppendLine("\t}");
-		sb.AppendLine("\tpublic bool TryGet(object? O, Type Target, string Key, out object? R) => this.PropAccessorMgr.TryGet(O, Target, Key, out R);");
-		sb.AppendLine("\tpublic bool TrySet(object? O, Type Target, string Key, object? Value) => this.PropAccessorMgr.TrySet(O, Target, Key, Value);");
-		sb.AppendLine("\tpublic IReadOnlyList<string> GetProps(Type Target, global::Tsinswreng.CsStrAcc.OptGetGetterNames? Opt = null) => this.PropAccessorMgr.GetProps(Target, Opt);");
-		sb.AppendLine("\tpublic bool TryGetType(Type Target, string Key, out Type? Type) => this.PropAccessorMgr.TryGetType(Target, Key, out Type);");
 
 		AppendMgrClass(sb, targetTypes);
 		for(var i = 0; i < targetTypes.Count; i++){
@@ -100,24 +96,6 @@ public sealed class StrAccGenerator: ISourceGenerator{
 			sb.AppendLine($"\t\t\t\t[typeof({typeExpr})] = __GeneratedPropAccessor_{i}.Inst,");
 		}
 		sb.AppendLine("\t\t\t};");
-		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t\tpublic bool TryGet(object? O, Type Target, string Key, out object? R){");
-		sb.AppendLine("\t\t\tR = null;");
-		sb.AppendLine("\t\t\tif(!Type_PropAccessor.TryGetValue(Target, out var accessor)){ return false; }");
-		sb.AppendLine("\t\t\treturn accessor.TryGet(O, Key, out R);");
-		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t\tpublic bool TrySet(object? O, Type Target, string Key, object? Value){");
-		sb.AppendLine("\t\t\tif(!Type_PropAccessor.TryGetValue(Target, out var accessor)){ return false; }");
-		sb.AppendLine("\t\t\treturn accessor.TrySet(O, Key, Value);");
-		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t\tpublic IReadOnlyList<string> GetProps(Type Target, global::Tsinswreng.CsStrAcc.OptGetGetterNames? Opt = null){");
-		sb.AppendLine("\t\t\tif(!Type_PropAccessor.TryGetValue(Target, out var accessor)){ return []; }");
-		sb.AppendLine("\t\t\treturn accessor.GetGetterNames(null, Opt).ToArray();");
-		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t\tpublic bool TryGetType(Type Target, string Key, out Type? Type){");
-		sb.AppendLine("\t\t\tType = null;");
-		sb.AppendLine("\t\t\tif(!Type_PropAccessor.TryGetValue(Target, out var accessor)){ return false; }");
-		sb.AppendLine("\t\t\treturn accessor.TryGetType(Key, out Type);");
 		sb.AppendLine("\t\t}");
 		sb.AppendLine("\t}");
 	}
