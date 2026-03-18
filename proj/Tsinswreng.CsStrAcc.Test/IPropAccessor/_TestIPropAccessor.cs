@@ -4,13 +4,14 @@ using Tsinswreng.CsStrAcc;
 namespace Tsinswreng.CsStrAcc.Test;
 
 public partial class TestIPropAccessor: ITester{
-	private sealed class DemoModel{
-		public int Age { get; set; }
-		public string? Name { get; set; }
+	/// IPropAccessor 是按單一 TargetType 工作的，
+	/// 因此測試覆蓋多模型時需要按目標類型取 SUT。
+	private IPropAccessor NewSut(Type TargetType){
+		throw new NotImplementedException($"TDD: IPropAccessor implementation is not wired yet. TargetType={TargetType}");
 	}
 
 	private IPropAccessor NewSut(){
-		throw new NotImplementedException("TDD: IPropAccessor implementation is not wired yet.");
+		return NewSut(typeof(Models.GeneralNsDerivedModel));
 	}
 
 	public ITestNode RegisterTestsInto(ITestNode? Node){
