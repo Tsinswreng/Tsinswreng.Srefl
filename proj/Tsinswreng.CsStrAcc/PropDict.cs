@@ -12,6 +12,7 @@ public interface IPropDict:IDictionary<str, obj?>{
 	[Doc(@$"Should be assignable to {nameof(TargetType)}")]
 	public obj? TargetObj{get;set;}
 }
+
 public class PropDict : IPropDict {
 	protected IPropAccessor _PropAccessor = null!;
 	protected Type _TargetType = null!;
@@ -63,16 +64,19 @@ public class PropDict : IPropDict {
 		}
 	}
 
-	// Keys 以 getter 名為準，確保可枚舉項都可讀。
-	public ICollection<str> Keys => PropAccessor.GetGetterNames(TargetObj).ToImmutableSortedSet();
+	// Keys 定義爲可讀且可寫的鍵（Getter 與 Setter 的交集）。
+	public ICollection<str> Keys => PropAccessor
+		.GetGetterNames(TargetObj)
+		.Intersect(PropAccessor.GetSetterNames(TargetObj))
+		.ToImmutableSortedSet();
 
 	public ICollection<obj?> Values => this.Select(Kv => Kv.Value).ToImmutableSortedSet();
 
-	public i32 Count => PropAccessor.GetGetterNames(TargetObj).Count;
+	public i32 Count => Keys.Count;
 
 	// 本字典支持索引器寫入，因此標記為可寫。
 	public bool IsReadOnly => false;
-
+	// 屬性字典是固定鍵集合，Add 在這裡按“設定屬性值”語義處理。
 	public void Add(str Key, obj? Value){
 		// 屬性字典是固定鍵集合，Add 在這裡按“設定屬性值”語義處理。
 		if(!ContainsKey(Key)){
@@ -124,7 +128,7 @@ public class PropDict : IPropDict {
 	}
 
 	public IEnumerator<KeyValuePair<str, obj?>> GetEnumerator(){
-		foreach(var Key in PropAccessor.GetGetterNames(TargetObj)){
+		foreach(var Key in Keys){
 			if(PropAccessor.TryGet(TargetObj, Key, out var R)){
 				yield return new KeyValuePair<str, obj?>(Key, R);
 			}
