@@ -20,7 +20,8 @@ public partial class TestIPropAccessor: ITester{
 
 		RegisterTryGet(Node);
 		RegisterTrySet(Node);
-		RegisterGetPropNames(Node);
+		RegisterGetGetterNames(Node);
+		RegisterGetSetterNames(Node);
 		RegisterTryGetType(Node);
 		return Node;
 	}

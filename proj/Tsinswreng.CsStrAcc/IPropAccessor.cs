@@ -6,6 +6,7 @@ namespace Tsinswreng.CsStrAcc;
 
 [Doc(@$"Access props by string
 defaultly support both public and non-public getters and setters.
+including props that are inherited from parent class
 functions are not included currently because they may have overloads.
 ")]
 public interface IPropAccessor{
