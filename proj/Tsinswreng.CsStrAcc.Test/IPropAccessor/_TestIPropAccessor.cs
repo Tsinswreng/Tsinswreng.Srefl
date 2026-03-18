@@ -4,10 +4,21 @@ using Tsinswreng.CsStrAcc;
 namespace Tsinswreng.CsStrAcc.Test;
 
 public partial class TestIPropAccessor: ITester{
+	private readonly IPropAccessorMgr _AccessorMgr;
+
+	public TestIPropAccessor(
+		IPropAccessorMgr AccessorMgr
+	){
+		_AccessorMgr = AccessorMgr;
+	}
+
 	/// IPropAccessor 是按單一 TargetType 工作的，
 	/// 因此測試覆蓋多模型時需要按目標類型取 SUT。
 	private IPropAccessor NewSut(Type TargetType){
-		throw new NotImplementedException($"TDD: IPropAccessor implementation is not wired yet. TargetType={TargetType}");
+		if(!_AccessorMgr.Type_PropAccessor.TryGetValue(TargetType, out var accessor)){
+			throw new Exception($"IPropAccessorMgr does not contain accessor for target type: {TargetType}");
+		}
+		return accessor;
 	}
 
 	private IPropAccessor NewSut(){

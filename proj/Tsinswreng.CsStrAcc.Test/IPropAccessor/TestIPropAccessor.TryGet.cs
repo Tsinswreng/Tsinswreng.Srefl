@@ -59,12 +59,35 @@ public partial class TestIPropAccessor{
 			return NIL;
 		});
 
-		R("TryGet_Should_ReturnFalse_For_PrivateProp", async(o)=>{
+		R("TryGet_Should_Read_PrivateProp_When_NonPublicGetterIsSupported", async(o)=>{
 			var sut = NewSut(typeof(GeneralNsDerivedModel));
 			var model = new GeneralNsDerivedModel();
-			var ok = sut.TryGet(model, "PrivateProp", out _);
+			sut.TrySet(model, "PrivateProp", "private-name");
+			var ok = sut.TryGet(model, "PrivateProp", out var got);
+			if(!ok){
+				throw new Exception("TryGet should support private property getter");
+			}
+			if(got is not string text || text != "private-name"){
+				throw new Exception("TryGet returned unexpected value for private property");
+			}
+			return NIL;
+		});
+
+		R("TryGet_Should_ReturnFalse_When_ObjectIsNull", async(o)=>{
+			var sut = NewSut(typeof(GeneralNsDerivedModel));
+			var ok = sut.TryGet(null, nameof(GeneralNsDerivedModel.Age), out _);
 			if(ok){
-				throw new Exception("TryGet should not expose private property");
+				throw new Exception("TryGet should return false when object is null");
+			}
+			return NIL;
+		});
+
+		R("TryGet_Should_ReturnFalse_When_ObjectTypeMismatches_TargetType", async(o)=>{
+			var sut = NewSut(typeof(GeneralNsDerivedModel));
+			var wrongObj = new TopLevelNsModel{ TopId = 42 };
+			var ok = sut.TryGet(wrongObj, nameof(GeneralNsDerivedModel.Age), out _);
+			if(ok){
+				throw new Exception("TryGet should return false when object type mismatches target type");
 			}
 			return NIL;
 		});

@@ -69,12 +69,34 @@ public partial class TestIPropAccessor{
 			return NIL;
 		});
 
-		R("TrySet_Should_ReturnFalse_For_PrivateProp", async(o)=>{
+		R("TrySet_Should_Write_PrivateProp_When_NonPublicSetterIsSupported", async(o)=>{
 			var sut = NewSut(typeof(GeneralNsDerivedModel));
 			var model = new GeneralNsDerivedModel();
 			var ok = sut.TrySet(model, "PrivateProp", "x");
+			if(!ok){
+				throw new Exception("TrySet should support private property setter");
+			}
+			if(!sut.TryGet(model, "PrivateProp", out var got) || got as string != "x"){
+				throw new Exception("TrySet did not update private property as expected");
+			}
+			return NIL;
+		});
+
+		R("TrySet_Should_ReturnFalse_When_ObjectIsNull", async(o)=>{
+			var sut = NewSut(typeof(GeneralNsDerivedModel));
+			var ok = sut.TrySet(null, nameof(GeneralNsDerivedModel.Age), 11);
 			if(ok){
-				throw new Exception("TrySet should not expose private property");
+				throw new Exception("TrySet should return false when object is null");
+			}
+			return NIL;
+		});
+
+		R("TrySet_Should_ReturnFalse_When_ObjectTypeMismatches_TargetType", async(o)=>{
+			var sut = NewSut(typeof(GeneralNsDerivedModel));
+			var wrongObj = new TopLevelNsModel{ TopId = 1 };
+			var ok = sut.TrySet(wrongObj, nameof(GeneralNsDerivedModel.Age), 22);
+			if(ok){
+				throw new Exception("TrySet should return false when object type mismatches target type");
 			}
 			return NIL;
 		});
