@@ -6,7 +6,7 @@ public interface IPropAccessorMgr{
 
 	public bool TrySet(obj? O, Type Target, str Key, obj? Value);
 	
-	public IReadOnlyList<str> GetProps(Type Target, OptGetPropNames? Opt = null);
+	public IReadOnlyList<str> GetProps(Type Target, OptGetGetterNames? Opt = null);
 	
 	public bool TryGetType(Type Target, str Key, out Type? Type);
 	#endregion

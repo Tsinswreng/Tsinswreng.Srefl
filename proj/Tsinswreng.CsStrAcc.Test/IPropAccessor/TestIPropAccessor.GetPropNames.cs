@@ -8,7 +8,7 @@ public partial class TestIPropAccessor{
 		var register = Node.MkTestFnRegister(
 			typeof(TestIPropAccessor)
 			,[typeof(IPropAccessor)]
-			,[nameof(IPropAccessor.GetPropNames)]
+			,[nameof(IPropAccessor.GetGetterNames)]
 			,nameof(TestIPropAccessor) + "."
 		);
 		var R = register.Register;
@@ -16,7 +16,7 @@ public partial class TestIPropAccessor{
 		R("GetPropNames_Should_Contain_PublicProps", async(o)=>{
 			var sut = NewSut(typeof(GeneralNsDerivedModel));
 			var model = new GeneralNsDerivedModel();
-			var names = sut.GetPropNames(model);
+			var names = sut.GetGetterNames(model);
 			if(!names.Contains(nameof(GeneralNsDerivedModel.Age))){
 				throw new Exception("GetPropNames missing Age");
 			}
@@ -32,7 +32,7 @@ public partial class TestIPropAccessor{
 		R("GetPropNames_Should_Exclude_Field_Method_And_PrivateProp", async(o)=>{
 			var sut = NewSut(typeof(GeneralNsDerivedModel));
 			var model = new GeneralNsDerivedModel();
-			var names = sut.GetPropNames(model);
+			var names = sut.GetGetterNames(model);
 			if(names.Contains(nameof(GeneralNsDerivedModel.PublicField))){
 				throw new Exception("GetPropNames should not include fields");
 			}
@@ -51,7 +51,7 @@ public partial class TestIPropAccessor{
 		R("GetPropNames_Should_Work_For_TopLevelNamespaceModel", async(o)=>{
 			var sut = NewSut(typeof(TopLevelNsModel));
 			var model = new TopLevelNsModel();
-			var names = sut.GetPropNames(model);
+			var names = sut.GetGetterNames(model);
 			if(!names.Contains(nameof(TopLevelNsModel.TopId)) || !names.Contains(nameof(TopLevelNsModel.TopName))){
 				throw new Exception("GetPropNames should support top-level-namespace model");
 			}
@@ -61,7 +61,7 @@ public partial class TestIPropAccessor{
 		R("GetPropNames_Should_Work_For_NestedPublicModel", async(o)=>{
 			var sut = NewSut(typeof(NestedTypeContainer.NestedPublicModel));
 			var model = new NestedTypeContainer.NestedPublicModel();
-			var names = sut.GetPropNames(model);
+			var names = sut.GetGetterNames(model);
 			if(!names.Contains(nameof(NestedTypeContainer.NestedPublicModel.Level))){
 				throw new Exception("GetPropNames should include nested model property");
 			}
@@ -74,8 +74,8 @@ public partial class TestIPropAccessor{
 		R("GetPropNames_Should_Return_SameInstance_On_RepeatedCalls", async(o)=>{
 			var sut = NewSut(typeof(GeneralNsDerivedModel));
 			var model = new GeneralNsDerivedModel();
-			var a = sut.GetPropNames(model);
-			var b = sut.GetPropNames(model);
+			var a = sut.GetGetterNames(model);
+			var b = sut.GetGetterNames(model);
 			if(!ReferenceEquals(a, b)){
 				throw new Exception("GetPropNames should return stable list instance across calls");
 			}
