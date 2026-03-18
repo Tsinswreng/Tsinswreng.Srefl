@@ -1,4 +1,8 @@
 using Tsinswreng.CsCore;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Collections.Immutable;
 
 namespace Tsinswreng.CsStrAcc;
 public interface IPropDict:IDictionary<str, obj?>{
@@ -9,60 +13,147 @@ public interface IPropDict:IDictionary<str, obj?>{
 	public obj? TargetObj{get;set;}
 }
 public class PropDict : IPropDict {
-	
-	public object? this[string key] {
-		get=>
+	protected IPropAccessor _PropAccessor = null!;
+	protected Type _TargetType = null!;
+	protected obj? _TargetObj;
+
+	public PropDict(IPropAccessor PropAccessor, obj? TargetObj){
+		this.PropAccessor = PropAccessor;
+		this.TargetType = PropAccessor.TargetType;
+		this.TargetObj = TargetObj;
 	}
 
-	public ICollection<string> Keys => throw new NotImplementedException();
-
-	public ICollection<object?> Values => throw new NotImplementedException();
-
-	public int Count => throw new NotImplementedException();
-
-	public bool IsReadOnly => throw new NotImplementedException();
-
-	public void Add(string key, object? value) {
-		throw new NotImplementedException();
+	public IPropAccessor PropAccessor{
+		get => _PropAccessor;
+		set{
+			_PropAccessor = value ?? throw new ArgumentNullException(nameof(value));
+			// PropAccessor 一旦切換，TargetType 要跟著對齊，避免狀態不一致。
+			_TargetType = _PropAccessor.TargetType;
+			EnsureTargetObjAssignable(_TargetObj);
+		}
 	}
 
-	public void Add(KeyValuePair<string, object?> item) {
-		throw new NotImplementedException();
+	public Type TargetType{
+		get => _TargetType;
+		set{
+			_TargetType = value ?? throw new ArgumentNullException(nameof(value));
+			EnsureTargetObjAssignable(_TargetObj);
+		}
 	}
 
-	public void Clear() {
-		throw new NotImplementedException();
+	public obj? TargetObj{
+		get => _TargetObj;
+		set{
+			EnsureTargetObjAssignable(value);
+			_TargetObj = value;
+		}
 	}
 
-	public bool Contains(KeyValuePair<string, object?> item) {
-		throw new NotImplementedException();
+	public obj? this[str Key] {
+		get{
+			if(!PropAccessor.TryGet(TargetObj, Key, out var R)){
+				throw new KeyNotFoundException($"key not readable: {Key}");
+			}
+			return R;
+		}
+		set{
+			if(!PropAccessor.TrySet(TargetObj, Key, value)){
+				throw new KeyNotFoundException($"key not writable: {Key}");
+			}
+		}
 	}
 
-	public bool ContainsKey(string key) {
-		throw new NotImplementedException();
+	// Keys 以 getter 名為準，確保可枚舉項都可讀。
+	public ICollection<str> Keys => PropAccessor.GetGetterNames(TargetObj).ToImmutableSortedSet();
+
+	public ICollection<obj?> Values => this.Select(Kv => Kv.Value).ToImmutableSortedSet();
+
+	public i32 Count => PropAccessor.GetGetterNames(TargetObj).Count;
+
+	// 本字典支持索引器寫入，因此標記為可寫。
+	public bool IsReadOnly => false;
+
+	public void Add(str Key, obj? Value){
+		// 屬性字典是固定鍵集合，Add 在這裡按“設定屬性值”語義處理。
+		if(!ContainsKey(Key)){
+			throw new KeyNotFoundException($"key not found: {Key}");
+		}
+		this[Key] = Value;
 	}
 
-	public void CopyTo(KeyValuePair<string, object?>[] array, int arrayIndex) {
-		throw new NotImplementedException();
+	public void Add(KeyValuePair<str, obj?> Item){
+		Add(Item.Key, Item.Value);
 	}
 
-	public IEnumerator<KeyValuePair<string, object?>> GetEnumerator() {
-		throw new NotImplementedException();
+	public void Clear(){
+		// 屬性集合由類型定義決定，不允許清空鍵集合。
+		throw new NotSupportedException($"{nameof(PropDict)} does not support {nameof(Clear)}()");
 	}
 
-	public bool Remove(string key) {
-		throw new NotImplementedException();
+	public bool Contains(KeyValuePair<str, obj?> Item){
+		if(!TryGetValue(Item.Key, out var V)){
+			return false;
+		}
+		return Equals(V, Item.Value);
 	}
 
-	public bool Remove(KeyValuePair<string, object?> item) {
-		throw new NotImplementedException();
+	public bool ContainsKey(str Key){
+		var GetterNames = PropAccessor.GetGetterNames(TargetObj);
+		if(GetterNames.Contains(Key)){
+			return true;
+		}
+		var SetterNames = PropAccessor.GetSetterNames(TargetObj);
+		return SetterNames.Contains(Key);
 	}
 
-	public bool TryGetValue(string key, out object? value) {
-		throw new NotImplementedException();
+	public void CopyTo(KeyValuePair<str, obj?>[] Array, i32 ArrayIndex){
+		if(Array == null){
+			throw new ArgumentNullException(nameof(Array));
+		}
+		if(ArrayIndex < 0 || ArrayIndex > Array.Length){
+			throw new ArgumentOutOfRangeException(nameof(ArrayIndex));
+		}
+		var Needed = Count;
+		if(Array.Length - ArrayIndex < Needed){
+			throw new ArgumentException("Target array is too small.");
+		}
+		var I = ArrayIndex;
+		foreach(var Kv in this){
+			Array[I++] = Kv;
+		}
 	}
 
-	IEnumerator IEnumerable.GetEnumerator() {
+	public IEnumerator<KeyValuePair<str, obj?>> GetEnumerator(){
+		foreach(var Key in PropAccessor.GetGetterNames(TargetObj)){
+			if(PropAccessor.TryGet(TargetObj, Key, out var R)){
+				yield return new KeyValuePair<str, obj?>(Key, R);
+			}
+		}
+	}
+
+	public bool Remove(str Key){
+		// 屬性集合是固定的，不能真正刪除鍵。
+		throw new NotSupportedException($"{nameof(PropDict)} does not support {nameof(Remove)}({nameof(Key)})");
+	}
+
+	public bool Remove(KeyValuePair<str, obj?> Item){
+		throw new NotSupportedException($"{nameof(PropDict)} does not support {nameof(Remove)}({nameof(Item)})");
+	}
+
+	public bool TryGetValue(str Key, out obj? Value){
+		return PropAccessor.TryGet(TargetObj, Key, out Value);
+	}
+
+	IEnumerator IEnumerable.GetEnumerator(){
 		return GetEnumerator();
+	}
+
+	protected void EnsureTargetObjAssignable(obj? Value){
+		if(Value is null){
+			return;
+		}
+		if(!TargetType.IsAssignableFrom(Value.GetType())){
+			throw new ArgumentException($"{nameof(TargetObj)} must be assignable to {nameof(TargetType)}. TargetType={TargetType}, Got={Value.GetType()}");
+		}
 	}
 }
