@@ -5,6 +5,16 @@ using System.Linq;
 using System.Collections.Immutable;
 
 namespace Tsinswreng.CsStrAcc;
+[Doc(@$"
+Property Dictionary of a object using {nameof(IPropAccessor)}
+
+#H[{nameof(Keys)}][
+	intersect of {nameof(PropAccessor.GetGetterNames)} and {nameof(PropAccessor.GetSetterNames)}
+]
+#H[{nameof(GetEnumerator)}][
+	of {nameof(Keys)}
+]
+")]
 public interface IPropDict:IDictionary<str, obj?>{
 	public IPropAccessor PropAccessor{get;set;}
 	public Type TargetType{get;set;}
