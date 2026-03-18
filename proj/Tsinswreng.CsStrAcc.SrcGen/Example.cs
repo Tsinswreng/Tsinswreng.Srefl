@@ -23,8 +23,8 @@ namespace NsB{
 }
 
 
-[DictType(typeof(NsA.ClassA))]
-[DictType(typeof(NsB.ClassB))]
+[StrAccType(typeof(NsA.ClassA))]
+[StrAccType(typeof(NsB.ClassB))]
 public partial class UserDictCtx{
 
 }
