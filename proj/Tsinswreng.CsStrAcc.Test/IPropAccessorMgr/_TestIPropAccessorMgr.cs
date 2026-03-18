@@ -12,10 +12,6 @@ public partial class TestIPropAccessorMgr: ITester{
 		Node ??= new TestNode();
 		Node.Ordered = true;
 
-		RegisterTryGet(Node);
-		RegisterTrySet(Node);
-		RegisterGetProps(Node);
-		RegisterTryGetType(Node);
 		return Node;
 	}
 }
