@@ -3,8 +3,8 @@ using Tsinswreng.CsTreeTest;
 namespace Tsinswreng.CsStrAcc.Test;
 
 public partial class TestIPropAccessor{
-	public void RegisterGetPropNames(ITestNode Test){
-		var register = Test.MkTestFnRegister(
+	public ITestNode RegisterGetPropNames(ITestNode Node){
+		var register = Node.MkTestFnRegister(
 			typeof(TestIPropAccessor)
 			,[typeof(IPropAccessor)]
 			,[nameof(IPropAccessor.GetPropNames)]
@@ -12,28 +12,30 @@ public partial class TestIPropAccessor{
 		);
 		var R = register.Register;
 
-		R("GetPropNames_Should_Contain_PublicProps", async(O)=>{
-			var Sut = NewSut();
-			var Model = new DemoModel();
-			var Names = Sut.GetPropNames(Model);
-			if(!Names.Contains(nameof(DemoModel.Age))){
+		R("GetPropNames_Should_Contain_PublicProps", async(o)=>{
+			var sut = NewSut();
+			var model = new DemoModel();
+			var names = sut.GetPropNames(model);
+			if(!names.Contains(nameof(DemoModel.Age))){
 				throw new Exception("GetPropNames missing Age");
 			}
-			if(!Names.Contains(nameof(DemoModel.Name))){
+			if(!names.Contains(nameof(DemoModel.Name))){
 				throw new Exception("GetPropNames missing Name");
 			}
 			return NIL;
 		});
 
-		R("GetPropNames_Should_Return_SameInstance_On_RepeatedCalls", async(O)=>{
-			var Sut = NewSut();
-			var Model = new DemoModel();
-			var A = Sut.GetPropNames(Model);
-			var B = Sut.GetPropNames(Model);
-			if(!ReferenceEquals(A, B)){
+		R("GetPropNames_Should_Return_SameInstance_On_RepeatedCalls", async(o)=>{
+			var sut = NewSut();
+			var model = new DemoModel();
+			var a = sut.GetPropNames(model);
+			var b = sut.GetPropNames(model);
+			if(!ReferenceEquals(a, b)){
 				throw new Exception("GetPropNames should return stable list instance across calls");
 			}
 			return NIL;
 		});
+
+		return Node;
 	}
 }

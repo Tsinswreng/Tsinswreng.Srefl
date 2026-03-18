@@ -13,14 +13,14 @@ public partial class TestIPropAccessor: ITester{
 		throw new NotImplementedException("TDD: IPropAccessor implementation is not wired yet.");
 	}
 
-	public ITestNode RegisterTestsInto(ITestNode? Test){
-		Test ??= new TestNode();
-		Test.Ordered = true;
+	public ITestNode RegisterTestsInto(ITestNode? Node){
+		Node ??= new TestNode();
+		Node.Ordered = true;
 
-		RegisterTryGet(Test);
-		RegisterTrySet(Test);
-		RegisterGetPropNames(Test);
-		RegisterTryGetType(Test);
-		return Test;
+		RegisterTryGet(Node);
+		RegisterTrySet(Node);
+		RegisterGetPropNames(Node);
+		RegisterTryGetType(Node);
+		return Node;
 	}
 }

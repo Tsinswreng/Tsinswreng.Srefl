@@ -3,8 +3,8 @@ using Tsinswreng.CsTreeTest;
 namespace Tsinswreng.CsStrAcc.Test;
 
 public partial class TestIPropAccessor{
-	public void RegisterTrySet(ITestNode Test){
-		var register = Test.MkTestFnRegister(
+	public ITestNode RegisterTrySet(ITestNode Node){
+		var register = Node.MkTestFnRegister(
 			typeof(TestIPropAccessor)
 			,[typeof(IPropAccessor)]
 			,[nameof(IPropAccessor.TrySet)]
@@ -12,27 +12,29 @@ public partial class TestIPropAccessor{
 		);
 		var R = register.Register;
 
-		R("TrySet_Should_ReturnTrue_AndMutate_When_KeyExists", async(O)=>{
-			var Sut = NewSut();
-			var Model = new DemoModel{ Age = 1, Name = "old" };
-			var Ok = Sut.TrySet(Model, nameof(DemoModel.Name), "new");
-			if(!Ok){
+		R("TrySet_Should_ReturnTrue_AndMutate_When_KeyExists", async(o)=>{
+			var sut = NewSut();
+			var model = new DemoModel{ Age = 1, Name = "old" };
+			var ok = sut.TrySet(model, nameof(DemoModel.Name), "new");
+			if(!ok){
 				throw new Exception("TrySet should return true for existing property");
 			}
-			if(Model.Name != "new"){
+			if(model.Name != "new"){
 				throw new Exception("TrySet should mutate target object");
 			}
 			return NIL;
 		});
 
-		R("TrySet_Should_ReturnFalse_When_KeyMissing", async(O)=>{
-			var Sut = NewSut();
-			var Model = new DemoModel{ Age = 1, Name = "old" };
-			var Ok = Sut.TrySet(Model, "NoSuchProp", "x");
-			if(Ok){
+		R("TrySet_Should_ReturnFalse_When_KeyMissing", async(o)=>{
+			var sut = NewSut();
+			var model = new DemoModel{ Age = 1, Name = "old" };
+			var ok = sut.TrySet(model, "NoSuchProp", "x");
+			if(ok){
 				throw new Exception("TrySet should return false for non-existing property");
 			}
 			return NIL;
 		});
+
+		return Node;
 	}
 }

@@ -1,4 +1,1 @@
-namespace Tsinswreng.CsStrAcc.Test;
-
-public partial class TestIPropAccessorMgr{
-}
+// moved to IPropAccessorMgr/TestIPropAccessorMgr.CoreApis.cs
