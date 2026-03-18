@@ -40,7 +40,8 @@ public interface IPropAccessor{
 	public bool TryGetType(str Key, out Type? Type);
 }
 
-public class PropDict : IDictionary<str, obj?> {
+//TODO
+//public class PropDict : IDictionary<str, obj?> {
 // 	IPropAccessor PropAcc;
 // 	Type TargetType;
 // 	obj? TargetObj;
