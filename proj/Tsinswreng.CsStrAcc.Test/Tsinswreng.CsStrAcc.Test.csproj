@@ -9,6 +9,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="../Tsinswreng.CsStrAcc/Tsinswreng.CsStrAcc.csproj" />
+		<ProjectReference Include="../Tsinswreng.CsStrAcc.SrcGen/Tsinswreng.CsStrAcc.SrcGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="../../../Tsinswreng.CsTreeTest/proj/Tsinswreng.CsTreeTest/Tsinswreng.CsTreeTest.csproj" />
 	</ItemGroup>
 

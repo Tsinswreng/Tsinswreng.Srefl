@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis;
 using Tsinswreng.CsStrAcc.SrcGen.Ctx;
 namespace Tsinswreng.CsStrAcc.SrcGen;
 
-[Generator]
+// legacy generator kept for reference only.
 public partial class DictGen: ISourceGenerator{
 	public void Initialize(GeneratorInitializationContext context) {
 		// 注册语法接收器来捕获标记了DictTypeAttribute的类
