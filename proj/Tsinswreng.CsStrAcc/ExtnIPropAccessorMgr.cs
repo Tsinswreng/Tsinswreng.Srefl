@@ -35,5 +35,15 @@ public static class ExtnIPropAccessorMgr{
 			}
 			return accessor.TryGetType(Key, out Type);
 		}
+		
+		public IPropDict ToPropDict(obj? O, Type Target){
+			var accessor = z.Type_PropAccessor[Target];
+			return new PropDict(accessor, Target);
+		}
+		public IPropDict ToPropDict<T>(T O){
+			var Target = typeof(T);
+			var accessor = z.Type_PropAccessor[Target];
+			return new PropDict(accessor, Target);
+		}
 	}
 }
