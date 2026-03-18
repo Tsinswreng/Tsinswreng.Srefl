@@ -166,8 +166,13 @@ public class PropDict : IPropDict {
 		if(Value is null){
 			return;
 		}
-		if(!TargetType.IsAssignableFrom(Value.GetType())){
-			throw new ArgumentException($"{nameof(TargetObj)} must be assignable to {nameof(TargetType)}. TargetType={TargetType}, Got={Value.GetType()}");
+		var GotType = Value.GetType();
+		if(!TargetType.IsAssignableFrom(GotType)){
+			throw new ArgumentException(
+$@"{nameof(TargetObj)} must be assignable to {nameof(TargetType)}.
+TargetType={TargetType}
+Got={GotType}"
+);
 		}
 	}
 }
