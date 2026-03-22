@@ -6,17 +6,17 @@ using Tsinswreng.CsTreeTest;
 namespace Tsinswreng.Srefl.Test;
 
 internal class Program{
-	[UnsafeAccessor(UnsafeAccessorKind.Method, Name = "get_PropAccessorMgr")]
-	private static extern IPropAccessorReg? GetPropAccessorMgrUnsafe(SharedModelStrAccRegistry Registry);
+	[UnsafeAccessor(UnsafeAccessorKind.Method, Name = "get_PropAccessorReg")]
+	private static extern IPropAccessorReg? GetPropAccessorRegUnsafe(SharedModelStrAccRegistry Registry);
 
 	public static async Task Main(string[] args){
 		IServiceCollection svcColct = new ServiceCollection();
 		svcColct
 			.AddSingleton<IPropAccessorReg>(sp => {
 				var registry = new SharedModelStrAccRegistry();
-				var accessorMgr = GetPropAccessorMgrUnsafe(registry);
+				var accessorMgr = GetPropAccessorRegUnsafe(registry);
 				if(accessorMgr is null){
-					throw new Exception($"Property PropAccessorMgr on {nameof(SharedModelStrAccRegistry)} is null or not {nameof(IPropAccessorReg)}");
+					throw new Exception($"Property PropAccessorReg on {nameof(SharedModelStrAccRegistry)} is null or not {nameof(IPropAccessorReg)}");
 				}
 				return accessorMgr;
 			})

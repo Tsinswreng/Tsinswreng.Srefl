@@ -63,14 +63,14 @@ public sealed class StrAccGenerator: ISourceGenerator{
 
 		AppendContainingTypesOpen(sb, hostType);
 		sb.AppendLine($"public partial class {hostType.Name}: global::{n.NsDictMapper}.IPropAccessorReg{{");
-		sb.AppendLine("\tpublic global::Tsinswreng.Srefl.IPropAccessorReg PropAccessorMgr { get; set; }");
+		sb.AppendLine("\tpublic global::Tsinswreng.Srefl.IPropAccessorReg PropAccessorReg { get; set; }");
 		sb.AppendLine($"\tpublic {hostType.Name}(){{");
-		sb.AppendLine("\t\tthis.PropAccessorMgr = new __GeneratedPropAccessorMgr();");
+		sb.AppendLine("\t\tthis.PropAccessorReg = new __GeneratedPropAccessorReg();");
 		sb.AppendLine("\t}");
 		// 兼容旧代码：一些地方可能直接把 ctx 当作 mgr 使用
 		sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IPropAccessor> Type_PropAccessor {");
-		sb.AppendLine("\t\tget => this.PropAccessorMgr.Type_PropAccessor;");
-		sb.AppendLine("\t\tset => this.PropAccessorMgr.Type_PropAccessor = value;");
+		sb.AppendLine("\t\tget => this.PropAccessorReg.Type_PropAccessor;");
+		sb.AppendLine("\t\tset => this.PropAccessorReg.Type_PropAccessor = value;");
 		sb.AppendLine("\t}");
 
 		AppendMgrClass(sb, targetTypes);
@@ -87,9 +87,9 @@ public sealed class StrAccGenerator: ISourceGenerator{
 	}
 
 	private static void AppendMgrClass(StringBuilder sb, IReadOnlyList<INamedTypeSymbol> targetTypes){
-		sb.AppendLine("\tprivate sealed class __GeneratedPropAccessorMgr: global::Tsinswreng.Srefl.IPropAccessorReg{");
+		sb.AppendLine("\tprivate sealed class __GeneratedPropAccessorReg: global::Tsinswreng.Srefl.IPropAccessorReg{");
 		sb.AppendLine("\t\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IPropAccessor> Type_PropAccessor { get; set; }");
-		sb.AppendLine("\t\tpublic __GeneratedPropAccessorMgr(){");
+		sb.AppendLine("\t\tpublic __GeneratedPropAccessorReg(){");
 		sb.AppendLine("\t\t\tType_PropAccessor = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Tsinswreng.Srefl.IPropAccessor>{");
 		for(var i = 0; i < targetTypes.Count; i++){
 			var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetTypes[i]);

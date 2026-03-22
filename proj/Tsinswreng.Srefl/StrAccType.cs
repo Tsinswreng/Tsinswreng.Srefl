@@ -21,7 +21,8 @@ public partial class MyAppStrAcc{
 
 then the source generator will add 
 ```cs
-public {{nameof(IPropAccessorReg)}} PropAccessorMgr{get;set;}
+public {{nameof(IPropAccessorReg)}} PropAccessorReg{get;set;}
+public {{nameof(IInstMkrReg)}} InstMkrReg{get;set;}
 ```
 to `MyAppStrAcc`
 ])
