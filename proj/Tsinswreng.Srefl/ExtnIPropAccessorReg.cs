@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace Tsinswreng.Srefl;
 
-public static class ExtnIPropAccessorMgr{
-	extension(IPropAccessorMgr z){
+public static class ExtnIPropAccessorReg{
+	extension(IPropAccessorReg z){
 		public bool TryGet(obj? O, Type Target, str Key, out obj? R){
 			R = null;
 			if(!z.Type_PropAccessor.TryGetValue(Target, out var accessor)){

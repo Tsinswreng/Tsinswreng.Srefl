@@ -4,13 +4,13 @@ using Tsinswreng.Srefl.Test.Models;
 
 namespace Tsinswreng.Srefl.Test;
 
-public partial class TestIPropAccessorMgr{
+public partial class TestIPropAccessorReg{
 	public ITestNode RegisterToPropDict(ITestNode Node){
 		var register = Node.MkTestFnRegister(
-			typeof(TestIPropAccessorMgr)
-			,[typeof(IPropAccessorMgr)]
-			,[nameof(ExtnIPropAccessorMgr.ToPropDict)]
-			,nameof(TestIPropAccessorMgr) + "."
+			typeof(TestIPropAccessorReg)
+			,[typeof(IPropAccessorReg)]
+			,[nameof(ExtnIPropAccessorReg.ToPropDict)]
+			,nameof(TestIPropAccessorReg) + "."
 		);
 		var R = register.Register;
 

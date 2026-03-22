@@ -4,10 +4,10 @@ using Tsinswreng.Srefl;
 namespace Tsinswreng.Srefl.Test;
 
 public partial class TestIPropAccessor: ITester{
-	private readonly IPropAccessorMgr _AccessorMgr;
+	private readonly IPropAccessorReg _AccessorMgr;
 
 	public TestIPropAccessor(
-		IPropAccessorMgr AccessorMgr
+		IPropAccessorReg AccessorMgr
 	){
 		_AccessorMgr = AccessorMgr;
 	}
@@ -16,7 +16,7 @@ public partial class TestIPropAccessor: ITester{
 	/// 因此測試覆蓋多模型時需要按目標類型取 SUT。
 	private IPropAccessor NewSut(Type TargetType){
 		if(!_AccessorMgr.Type_PropAccessor.TryGetValue(TargetType, out var accessor)){
-			throw new Exception($"IPropAccessorMgr does not contain accessor for target type: {TargetType}");
+			throw new Exception($"IPropAccessorReg does not contain accessor for target type: {TargetType}");
 		}
 		return accessor;
 	}

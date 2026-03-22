@@ -8,7 +8,7 @@ public class StrAccTestMgr: DiEtTestMgr{
 	public override ITestNode RegisterTestsInto(ITestNode? Test){
 		Test = this.TestNode;
 		this.RegisterTester<TestIPropAccessor>();
-		this.RegisterTester<TestIPropAccessorMgr>();
+		this.RegisterTester<TestIPropAccessorReg>();
 		return Test;
 	}
 }

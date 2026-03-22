@@ -2,7 +2,7 @@ using Tsinswreng.Srefl;
 
 
 namespace Tsinswreng.Srefl.Test.Models{
-	/// 這組類型專供 IPropAccessor / IPropAccessorMgr 測試共用。
+	/// 這組類型專供 IPropAccessor / IPropAccessorReg 測試共用。
 	/// 目標是把「屬性、字段、方法、繼承、嵌套類、不同命名空間位置」都覆蓋到。
 	public class GeneralNsBaseModel{
 		public int BaseId { get; set; }

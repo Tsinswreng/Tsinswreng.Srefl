@@ -3,16 +3,16 @@ using Tsinswreng.Srefl;
 
 namespace Tsinswreng.Srefl.Test;
 
-public partial class TestIPropAccessorMgr: ITester{
-	private readonly IPropAccessorMgr _AccessorMgr;
+public partial class TestIPropAccessorReg: ITester{
+	private readonly IPropAccessorReg _AccessorMgr;
 
-	public TestIPropAccessorMgr(
-		IPropAccessorMgr AccessorMgr
+	public TestIPropAccessorReg(
+		IPropAccessorReg AccessorMgr
 	){
 		_AccessorMgr = AccessorMgr;
 	}
 
-	private IPropAccessorMgr NewSut(){
+	private IPropAccessorReg NewSut(){
 		return _AccessorMgr;
 	}
 
