@@ -6,13 +6,7 @@ namespace Tsinswreng.CsStrAcc;
 
 
 public interface ITypeConverter{
-	[Doc("For serialize")]
 	public obj? Convert(obj? Obj, Type Type);
-}
-
-public interface ITypeDeConverter{
-	[Doc("For deserialize")]
-	public obj? Convert(obj? Src, Type TargetType);
 }
 
 [Doc(@$"
@@ -29,7 +23,6 @@ e.g when serialize, there may be more than one type mapped to `string`,
 ")]
 public class DictSerializer{
 	public IDictionary<Type, ITypeConverter> Converters{get;set;}
-	public IDictionary<Type, ITypeDeConverter> DeConverters{get;set;}
 	public IDictionary<Type, IPropAccessor> PropAccessors{get;set;}
 	
 	[Doc(@$"
@@ -50,21 +43,6 @@ public class DictSerializer{
 	")]
 	public Func<Type, Type?> GetListElementType{get;set;} = (_)=>null;
 
-	public DictSerializer(){
-		Converters = new Dictionary<Type, ITypeConverter>();
-		DeConverters = new Dictionary<Type, ITypeDeConverter>();
-		PropAccessors = new Dictionary<Type, IPropAccessor>();
-		InstMkrs = new Dictionary<Type, IInstMkr>();
-	}
-
-	public void SetConverter(Type Type, ITypeConverter Converter){
-		Converters[Type] = Converter;
-	}
-
-	public void SetDeConverter(Type Type, ITypeDeConverter Converter){
-		DeConverters[Type] = Converter;
-	}
-	
 	[Doc(@$"
 	deep serialize an object to a nested `IDictionary<str, obj?>` or `IList<obj?>`
 	#Params([],[if null, use `Obj.GetType()`])
