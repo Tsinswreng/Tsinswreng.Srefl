@@ -74,8 +74,12 @@ public sealed class StrAccGenerator: ISourceGenerator{
 		sb.AppendLine("\t\tget => this.PropAccessorReg.Type_PropAccessor;");
 		sb.AppendLine("\t\tset => this.PropAccessorReg.Type_PropAccessor = value;");
 		sb.AppendLine("\t}");
+	sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr> Type_InstMkr {");
+	sb.AppendLine("\t\tget => this.InstMkrReg.Type_InstMkr;");
+	sb.AppendLine("\t\tset => this.InstMkrReg.Type_InstMkr = value;");
+	sb.AppendLine("\t}");
 
-		AppendMgrClass(sb, targetTypes);
+	AppendMgrClass(sb, targetTypes);
 		AppendInstMkrRegClass(sb, targetTypes);
 		for(var i = 0; i < targetTypes.Count; i++){
 			AppendAccessorClass(sb, targetTypes[i], i);
