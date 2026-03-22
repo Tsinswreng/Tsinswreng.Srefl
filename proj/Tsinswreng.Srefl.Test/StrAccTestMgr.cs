@@ -9,6 +9,7 @@ public class StrAccTestMgr: DiEtTestMgr{
 		Test = this.TestNode;
 		this.RegisterTester<TestIPropAccessor>();
 		this.RegisterTester<TestIPropAccessorReg>();
+		this.RegisterTester<TestIInstMkrReg>();
 		return Test;
 	}
 }
