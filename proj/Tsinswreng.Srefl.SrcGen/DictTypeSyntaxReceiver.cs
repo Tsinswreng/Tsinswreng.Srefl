@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Tsinswreng.CsStrAcc.SrcGen;
+namespace Tsinswreng.Srefl.SrcGen;
 // 语法接收器，用于定位所有包含DictType特性的类(一般只有一個)
 public partial class DictTypeSyntaxReceiver : ISyntaxReceiver {
 	public IList<ClassDeclarationSyntax> DictCtxClasses { get; } = new List<ClassDeclarationSyntax>();

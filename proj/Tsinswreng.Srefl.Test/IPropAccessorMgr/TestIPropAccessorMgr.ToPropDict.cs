@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Tsinswreng.CsTreeTest;
-using Tsinswreng.CsStrAcc.Test.Models;
+using Tsinswreng.Srefl.Test.Models;
 
-namespace Tsinswreng.CsStrAcc.Test;
+namespace Tsinswreng.Srefl.Test;
 
 public partial class TestIPropAccessorMgr{
 	public ITestNode RegisterToPropDict(ITestNode Node){

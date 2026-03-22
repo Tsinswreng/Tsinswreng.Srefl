@@ -1,7 +1,7 @@
 using Tsinswreng.CsTreeTest;
-using Tsinswreng.CsStrAcc;
+using Tsinswreng.Srefl;
 
-namespace Tsinswreng.CsStrAcc.Test;
+namespace Tsinswreng.Srefl.Test;
 
 public partial class TestIPropAccessor: ITester{
 	private readonly IPropAccessorMgr _AccessorMgr;

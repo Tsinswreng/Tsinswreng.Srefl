@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.CodeAnalysis;
 
-namespace Tsinswreng.CsStrAcc.SrcGen;
+namespace Tsinswreng.Srefl.SrcGen;
 
 [Generator]
 public sealed class StrAccGenerator: ISourceGenerator{
@@ -63,12 +63,12 @@ public sealed class StrAccGenerator: ISourceGenerator{
 
 		AppendContainingTypesOpen(sb, hostType);
 		sb.AppendLine($"public partial class {hostType.Name}: global::{n.NsDictMapper}.IPropAccessorMgr{{");
-		sb.AppendLine("\tpublic global::Tsinswreng.CsStrAcc.IPropAccessorMgr PropAccessorMgr { get; set; }");
+		sb.AppendLine("\tpublic global::Tsinswreng.Srefl.IPropAccessorMgr PropAccessorMgr { get; set; }");
 		sb.AppendLine($"\tpublic {hostType.Name}(){{");
 		sb.AppendLine("\t\tthis.PropAccessorMgr = new __GeneratedPropAccessorMgr();");
 		sb.AppendLine("\t}");
 		// 兼容旧代码：一些地方可能直接把 ctx 当作 mgr 使用
-		sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.CsStrAcc.IPropAccessor> Type_PropAccessor {");
+		sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IPropAccessor> Type_PropAccessor {");
 		sb.AppendLine("\t\tget => this.PropAccessorMgr.Type_PropAccessor;");
 		sb.AppendLine("\t\tset => this.PropAccessorMgr.Type_PropAccessor = value;");
 		sb.AppendLine("\t}");
@@ -87,10 +87,10 @@ public sealed class StrAccGenerator: ISourceGenerator{
 	}
 
 	private static void AppendMgrClass(StringBuilder sb, IReadOnlyList<INamedTypeSymbol> targetTypes){
-		sb.AppendLine("\tprivate sealed class __GeneratedPropAccessorMgr: global::Tsinswreng.CsStrAcc.IPropAccessorMgr{");
-		sb.AppendLine("\t\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.CsStrAcc.IPropAccessor> Type_PropAccessor { get; set; }");
+		sb.AppendLine("\tprivate sealed class __GeneratedPropAccessorMgr: global::Tsinswreng.Srefl.IPropAccessorMgr{");
+		sb.AppendLine("\t\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IPropAccessor> Type_PropAccessor { get; set; }");
 		sb.AppendLine("\t\tpublic __GeneratedPropAccessorMgr(){");
-		sb.AppendLine("\t\t\tType_PropAccessor = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Tsinswreng.CsStrAcc.IPropAccessor>{");
+		sb.AppendLine("\t\t\tType_PropAccessor = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Tsinswreng.Srefl.IPropAccessor>{");
 		for(var i = 0; i < targetTypes.Count; i++){
 			var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetTypes[i]);
 			sb.AppendLine($"\t\t\t\t[typeof({typeExpr})] = __GeneratedPropAccessor_{i}.Inst,");
@@ -107,7 +107,7 @@ public sealed class StrAccGenerator: ISourceGenerator{
 		var setterProps = props.Where(p => p.SetMethod is not null).ToArray();
 		var publicForType = props.Where(p => p.DeclaredAccessibility == Accessibility.Public).ToArray();
 
-		sb.AppendLine($"\tprivate sealed class __GeneratedPropAccessor_{index}: global::Tsinswreng.CsStrAcc.IPropAccessor{{");
+		sb.AppendLine($"\tprivate sealed class __GeneratedPropAccessor_{index}: global::Tsinswreng.Srefl.IPropAccessor{{");
 		sb.AppendLine($"\t\tpublic static readonly __GeneratedPropAccessor_{index} Inst = new __GeneratedPropAccessor_{index}();");
 		sb.AppendLine($"\t\tpublic Type TargetType {{ get; }} = typeof({typeExpr});");
 		sb.AppendLine("\t\tprivate static readonly string[] __GetterNames = new string[]{");
@@ -177,10 +177,10 @@ public sealed class StrAccGenerator: ISourceGenerator{
 		sb.AppendLine("\t\t\t}");
 		sb.AppendLine("\t\t}");
 
-		sb.AppendLine("\t\tpublic IReadOnlyCollection<string> GetGetterNames(object? O, global::Tsinswreng.CsStrAcc.OptGetGetterNames? Opt = null){");
+		sb.AppendLine("\t\tpublic IReadOnlyCollection<string> GetGetterNames(object? O, global::Tsinswreng.Srefl.OptGetGetterNames? Opt = null){");
 		sb.AppendLine("\t\t\treturn __GetterNames;");
 		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t\tpublic IReadOnlyCollection<string> GetSetterNames(object? O, global::Tsinswreng.CsStrAcc.OptGetSetterNames? Opt = null){");
+		sb.AppendLine("\t\tpublic IReadOnlyCollection<string> GetSetterNames(object? O, global::Tsinswreng.Srefl.OptGetSetterNames? Opt = null){");
 		sb.AppendLine("\t\t\treturn __SetterNames;");
 		sb.AppendLine("\t\t}");
 		sb.AppendLine("\t\tpublic bool TryGetType(string Key, out Type? Type){");

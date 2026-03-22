@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.CodeAnalysis;
-using Tsinswreng.CsStrAcc.SrcGen.Ctx;
-namespace Tsinswreng.CsStrAcc.SrcGen;
+using Tsinswreng.Srefl.SrcGen.Ctx;
+namespace Tsinswreng.Srefl.SrcGen;
 
 // legacy generator kept for reference only.
 public partial class DictGen: ISourceGenerator{

@@ -1,6 +1,6 @@
 using Microsoft.CodeAnalysis;
 
-namespace Tsinswreng.CsStrAcc.SrcGen;
+namespace Tsinswreng.Srefl.SrcGen;
 
 public  partial interface IParamDictType{
 	public INamedTypeSymbol TargetTypeSymbol{get;set;}

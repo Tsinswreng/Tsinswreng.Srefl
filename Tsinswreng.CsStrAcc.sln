@@ -4,11 +4,11 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proj", "proj", "{E0646F15-01CD-F564-1BA1-3B06AC80F086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsinswreng.CsStrAcc", "proj\Tsinswreng.CsStrAcc\Tsinswreng.CsStrAcc.csproj", "{A33C6F3E-5AED-B45D-6E33-CF8BDE760C06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsinswreng.Srefl", "proj\Tsinswreng.Srefl\Tsinswreng.Srefl.csproj", "{A33C6F3E-5AED-B45D-6E33-CF8BDE760C06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsinswreng.CsStrAcc.SrcGen", "proj\Tsinswreng.CsStrAcc.SrcGen\Tsinswreng.CsStrAcc.SrcGen.csproj", "{31E04BA4-85EA-53C8-0DB9-A4AC67197358}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsinswreng.Srefl.SrcGen", "proj\Tsinswreng.Srefl.SrcGen\Tsinswreng.Srefl.SrcGen.csproj", "{31E04BA4-85EA-53C8-0DB9-A4AC67197358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsinswreng.CsStrAcc.Test", "proj\Tsinswreng.CsStrAcc.Test\Tsinswreng.CsStrAcc.Test.csproj", "{184CE5C5-C857-DA0B-E60E-74ACD3FAEFAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tsinswreng.Srefl.Test", "proj\Tsinswreng.Srefl.Test\Tsinswreng.Srefl.Test.csproj", "{184CE5C5-C857-DA0B-E60E-74ACD3FAEFAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

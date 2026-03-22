@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.Immutable;
 
-namespace Tsinswreng.CsStrAcc;
+namespace Tsinswreng.Srefl;
 [Doc(@$"
 Property Dictionary of a object using {nameof(IPropAccessor)}
 

@@ -1,7 +1,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Tsinswreng.CsStrAcc.SrcGen;
+namespace Tsinswreng.Srefl.SrcGen;
 
 public  partial class CtxDictGen{
 	

@@ -1,7 +1,7 @@
-using Tsinswreng.CsStrAcc;
+using Tsinswreng.Srefl;
 
 
-namespace Tsinswreng.CsStrAcc.Test.Models{
+namespace Tsinswreng.Srefl.Test.Models{
 	/// 這組類型專供 IPropAccessor / IPropAccessorMgr 測試共用。
 	/// 目標是把「屬性、字段、方法、繼承、嵌套類、不同命名空間位置」都覆蓋到。
 	public class GeneralNsBaseModel{
@@ -54,7 +54,7 @@ namespace Tsinswreng.CsStrAcc.Test.Models{
 }
 
 
-namespace Tsinswreng.CsStrAcc.Test{
+namespace Tsinswreng.Srefl.Test{
 	/// 這個類型在測試項目頂級命名空間下，用來覆蓋「頂級命名空間類型」場景。
 	public class TopLevelNsModel{
 		public int TopId { get; set; }

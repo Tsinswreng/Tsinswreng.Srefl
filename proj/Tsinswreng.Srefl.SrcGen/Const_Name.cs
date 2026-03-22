@@ -1,6 +1,6 @@
 using System;
 
-namespace Tsinswreng.CsStrAcc.SrcGen;
+namespace Tsinswreng.Srefl.SrcGen;
 
 public  partial class ConstName{
 	protected static ConstName? _Inst = null;
@@ -21,8 +21,8 @@ public  partial class ConstName{
 	public str FnToDict = nameof(FnToDict);
 	public str FnAssign = nameof(FnAssign);
 	public str FnGetTypeDict = nameof(FnGetTypeDict);
-	//public str NsDictMapper = nameof(Tsinswreng)+"."+nameof(CsStrAcc)+"."+nameof(DictMapper);
-	public str NsDictMapper = nameof(Tsinswreng)+"."+nameof(CsStrAcc);
+	//public str NsDictMapper = nameof(Tsinswreng)+"."+nameof(Srefl)+"."+nameof(DictMapper);
+	public str NsDictMapper = nameof(Tsinswreng)+"."+nameof(Srefl);
 	public str IDictMapperForOneType = nameof(IDictMapperForOneType);
 	public str TargetType = nameof(TargetType);
 	public str Type_Mapper = nameof(Type_Mapper);

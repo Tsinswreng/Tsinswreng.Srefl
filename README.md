@@ -1,4 +1,4 @@
-# CsStrAcc
+# Srefl
 Convert between `IDictionary<string,object?>` and C# object.
 
 AOT friendly, Free of reflection.
@@ -10,7 +10,7 @@ AOT friendly, Free of reflection.
 ## Config the mapper
 
 ```cs
-using Tsinswreng.CsStrAcc;
+using Tsinswreng.Srefl;
 
 namespace MyProjectNamespace; // don't put things in global namespace otherwise it may not work
 
@@ -30,7 +30,7 @@ public partial class AppDictMapper{
 ## Use the mapper
 
 ```cs
-using Tsinswreng.CsStrAcc;
+using Tsinswreng.Srefl;
 // object to dictionary:
 var person = new Person{Age=22, Name="Tsinswreng"};
 var dict = AppDictMapper.Inst.ToDictShallowT(person);
@@ -49,12 +49,12 @@ AppDictMapper.Inst.AssignShallowT(person2, dict);
 ```xml
 <ItemGroup>
 	<!-- reference the source generator assembly -->
-	<ProjectReference Include="../Tsinswreng.CsStrAcc/proj/Tsinswreng.CsStrAcc.SrcGen/Tsinswreng.CsStrAcc.SrcGen.csproj"
+	<ProjectReference Include="../Tsinswreng.Srefl/proj/Tsinswreng.Srefl.SrcGen/Tsinswreng.Srefl.SrcGen.csproj"
 		OutputItemType="Analyzer" ReferenceOutputAssembly="false"
 	/>
 
 	<!-- reference the API assembly, including Attributes, interfaces etc. -->
-	<ProjectReference Include="../Tsinswreng.CsStrAcc/proj/Tsinswreng.CsStrAcc/Tsinswreng.CsStrAcc.csproj" />
+	<ProjectReference Include="../Tsinswreng.Srefl/proj/Tsinswreng.Srefl/Tsinswreng.Srefl.csproj" />
 
 </ItemGroup>
 ```
@@ -65,7 +65,7 @@ The class attached `[DictType(typeof(T))]` will automatically implement the inte
 
 
 ```cs
-namespace Tsinswreng.CsStrAcc;
+namespace Tsinswreng.Srefl;
 using str = string;
 public  partial interface IDictMapperShallow{
 	public IDictionary<Type, IDictMapperForOneType> Type_Mapper{get;set;}

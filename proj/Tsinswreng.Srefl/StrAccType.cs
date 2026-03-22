@@ -1,4 +1,4 @@
-namespace Tsinswreng.CsStrAcc;
+namespace Tsinswreng.Srefl;
 
 using System;
 using Tsinswreng.CsCore;

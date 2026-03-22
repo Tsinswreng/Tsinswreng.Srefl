@@ -1,6 +1,6 @@
 using Tsinswreng.CsCore;
 
-namespace Tsinswreng.CsStrAcc;
+namespace Tsinswreng.Srefl;
 
 public interface IInstMkr{
 	public Type Target{get;set;}

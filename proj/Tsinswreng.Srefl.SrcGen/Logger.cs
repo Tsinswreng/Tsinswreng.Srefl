@@ -1,10 +1,10 @@
 #pragma warning disable RS1035
 // #define TswG_DEBUG
-namespace Tsinswreng.CsStrAcc.SrcGen;
+namespace Tsinswreng.Srefl.SrcGen;
 using System.IO;
 
 internal class Logger{
-	public static string Path = "E:/_code/CsNgaq/Tsinswreng.CsStrAcc.log.txt";
+	public static string Path = "E:/_code/CsNgaq/Tsinswreng.Srefl.log.txt";
 	public static void Append(string s){
 #if TswG_DEBUG
 		File.AppendAllText(Path, s+"\n");
@@ -19,7 +19,7 @@ internal class Logger{
 
 	public static void Debug(string Path, string s){
 #if TswG_DEBUG
-		var Base = @"E:\_code\CsNgaq\Tsinswreng.CsStrAcc.LogDir";
+		var Base = @"E:\_code\CsNgaq\Tsinswreng.Srefl.LogDir";
 		Directory.CreateDirectory(Base);
 		Path = $"{Base}/"+Path;
 		File.WriteAllText(""+Path, s);

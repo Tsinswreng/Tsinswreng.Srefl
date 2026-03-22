@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tsinswreng.CsCore;
-namespace Tsinswreng.CsStrAcc;
+namespace Tsinswreng.Srefl;
 
 [Doc(@$"Access props by string
 defaultly support both public and non-public getters and setters.

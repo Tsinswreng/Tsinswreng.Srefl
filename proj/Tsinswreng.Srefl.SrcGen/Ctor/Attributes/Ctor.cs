@@ -1,4 +1,4 @@
-namespace Tsinswreng.CsStrAcc.Ctor.Attributes;
+namespace Tsinswreng.Srefl.Ctor.Attributes;
 
 using System;
 

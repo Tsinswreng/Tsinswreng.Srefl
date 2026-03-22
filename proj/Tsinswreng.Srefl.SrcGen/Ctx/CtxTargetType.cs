@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 
-namespace Tsinswreng.CsStrAcc.SrcGen.Ctx;
+namespace Tsinswreng.Srefl.SrcGen.Ctx;
 
 
 public  partial class CtxTargetType{

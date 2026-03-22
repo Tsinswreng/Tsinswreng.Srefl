@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
-using Tsinswreng.CsStrAcc.Test.Models;
+using Tsinswreng.Srefl.Test.Models;
 
-namespace Tsinswreng.CsStrAcc.Test;
+namespace Tsinswreng.Srefl.Test;
 
 /// 這是按 SharedModels 裏的 GeneralNsDerivedModel 寫出的「一份具體輸出樣例」。
 /// 用來直觀看源生成後大概會是什麼結構（這個類本身不參與測試註冊）。

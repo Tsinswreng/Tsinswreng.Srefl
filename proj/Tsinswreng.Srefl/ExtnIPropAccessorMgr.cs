@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Tsinswreng.CsStrAcc;
+namespace Tsinswreng.Srefl;
 
 public static class ExtnIPropAccessorMgr{
 	extension(IPropAccessorMgr z){

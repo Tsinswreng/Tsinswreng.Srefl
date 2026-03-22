@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Tsinswreng.CsStrAcc.SrcGen.Ctx;
+namespace Tsinswreng.Srefl.SrcGen.Ctx;
 
 public  partial class CtxDictCtx{
 

@@ -12,9 +12,9 @@ global using f64 = System.Double;
 global using str = System.String;
 global using obj = object;
 global using nil = object;
-global using static Tsinswreng.CsStrAcc.Nil;
+global using static Tsinswreng.Srefl.Nil;
 //#pragma warning restore CS8981
-namespace Tsinswreng.CsStrAcc{
+namespace Tsinswreng.Srefl{
 internal class Nil{
 	public const nil NIL = null!;
 }

@@ -1,14 +1,14 @@
 Run
-Tsinswreng.CsStrAcc.LogDir/Root.UserDictCtx-Root.NsA.ClassA.cs
-System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\_code\CsNgaq\Tsinswreng.CsStrAcc\proj\Tsinswreng.CsStrAcc.Test\Tsinswreng.CsStrAcc\Tsinswreng.CsStrAcc.LogDir\Root.UserDictCtx-Root.NsA.ClassA.cs'.
-   at Tsinswreng.CsStrAcc.DictMapper.CodeGenerator.Ctx.GenDictCtx.Run() in E:\_code\CsNgaq\Tsinswreng.CsStrAcc\proj\Tsinswreng.CsStrAcc\DictMapper\CodeGenerator\Ctx\CtxDictCtx.cs:line 278
-   at Tsinswreng.CsStrAcc.DictMapper.CodeGenerator.DictGen.Execute(GeneratorExecutionContext ExeCtx) in E:\_code\CsNgaq\Tsinswreng.CsStrAcc\proj\Tsinswreng.CsStrAcc\DictMapper\CodeGenerator\DictGen.cs:line 35
+Tsinswreng.Srefl.LogDir/Root.UserDictCtx-Root.NsA.ClassA.cs
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\_code\CsNgaq\Tsinswreng.Srefl\proj\Tsinswreng.Srefl.Test\Tsinswreng.Srefl\Tsinswreng.Srefl.LogDir\Root.UserDictCtx-Root.NsA.ClassA.cs'.
+   at Tsinswreng.Srefl.DictMapper.CodeGenerator.Ctx.GenDictCtx.Run() in E:\_code\CsNgaq\Tsinswreng.Srefl\proj\Tsinswreng.Srefl\DictMapper\CodeGenerator\Ctx\CtxDictCtx.cs:line 278
+   at Tsinswreng.Srefl.DictMapper.CodeGenerator.DictGen.Execute(GeneratorExecutionContext ExeCtx) in E:\_code\CsNgaq\Tsinswreng.Srefl\proj\Tsinswreng.Srefl\DictMapper\CodeGenerator\DictGen.cs:line 35
 Run
-Tsinswreng.CsStrAcc.LogDir/Root.UserDictCtx-Root.NsA.ClassA.cs
+Tsinswreng.Srefl.LogDir/Root.UserDictCtx-Root.NsA.ClassA.cs
 #pragma warning disable CS8618, CS8600, CS8601, CS8604, CS8605
 namespace Root {
 namespace Root.NsA {
-public  partial class UserDictCtx : Tsinswreng.CsStrAcc.Dict.IDictForOneType{
+public  partial class UserDictCtx : Tsinswreng.Srefl.Dict.IDictForOneType{
 	protected static UserDictCtx? _Inst = null;
 	public static UserDictCtx Inst => _Inst??= new UserDictCtx();
 
@@ -53,6 +53,6 @@ public  partial class UserDictCtx : Tsinswreng.CsStrAcc.Dict.IDictForOneType{
 }
 }
 }
-System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\_code\CsNgaq\Tsinswreng.CsStrAcc\proj\Tsinswreng.CsStrAcc.Test\Tsinswreng.CsStrAcc\Tsinswreng.CsStrAcc.LogDir\Root.UserDictCtx-Root.NsA.ClassA.cs'.
-   at Tsinswreng.CsStrAcc.DictMapper.CodeGenerator.Ctx.GenDictCtx.Run() in E:\_code\CsNgaq\Tsinswreng.CsStrAcc\proj\Tsinswreng.CsStrAcc\DictMapper\CodeGenerator\Ctx\CtxDictCtx.cs:line 278
-   at Tsinswreng.CsStrAcc.DictMapper.CodeGenerator.DictGen.Execute(GeneratorExecutionContext ExeCtx) in E:\_code\CsNgaq\Tsinswreng.CsStrAcc\proj\Tsinswreng.CsStrAcc\DictMapper\CodeGenerator\DictGen.cs:line 35
+System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\_code\CsNgaq\Tsinswreng.Srefl\proj\Tsinswreng.Srefl.Test\Tsinswreng.Srefl\Tsinswreng.Srefl.LogDir\Root.UserDictCtx-Root.NsA.ClassA.cs'.
+   at Tsinswreng.Srefl.DictMapper.CodeGenerator.Ctx.GenDictCtx.Run() in E:\_code\CsNgaq\Tsinswreng.Srefl\proj\Tsinswreng.Srefl\DictMapper\CodeGenerator\Ctx\CtxDictCtx.cs:line 278
+   at Tsinswreng.Srefl.DictMapper.CodeGenerator.DictGen.Execute(GeneratorExecutionContext ExeCtx) in E:\_code\CsNgaq\Tsinswreng.Srefl\proj\Tsinswreng.Srefl\DictMapper\CodeGenerator\DictGen.cs:line 35

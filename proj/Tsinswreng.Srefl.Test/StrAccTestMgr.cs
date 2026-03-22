@@ -1,6 +1,6 @@
 using Tsinswreng.CsTreeTest;
 
-namespace Tsinswreng.CsStrAcc.Test;
+namespace Tsinswreng.Srefl.Test;
 
 public class StrAccTestMgr: DiEtTestMgr{
 	public static StrAccTestMgr Inst = new();

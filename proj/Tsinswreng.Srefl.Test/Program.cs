@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
-using Tsinswreng.CsStrAcc;
+using Tsinswreng.Srefl;
 using Tsinswreng.CsTreeTest;
 
-namespace Tsinswreng.CsStrAcc.Test;
+namespace Tsinswreng.Srefl.Test;
 
 internal class Program{
 	[UnsafeAccessor(UnsafeAccessorKind.Method, Name = "get_PropAccessorMgr")]

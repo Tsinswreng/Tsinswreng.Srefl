@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="../Tsinswreng.CsStrAcc/Tsinswreng.CsStrAcc.csproj" />
+		<ProjectReference Include="../Tsinswreng.Srefl/Tsinswreng.Srefl.csproj" />
 	</ItemGroup>
 
 

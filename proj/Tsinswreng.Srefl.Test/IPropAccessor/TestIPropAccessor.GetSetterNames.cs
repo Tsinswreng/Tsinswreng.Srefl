@@ -1,7 +1,7 @@
 using Tsinswreng.CsTreeTest;
-using Tsinswreng.CsStrAcc.Test.Models;
+using Tsinswreng.Srefl.Test.Models;
 
-namespace Tsinswreng.CsStrAcc.Test;
+namespace Tsinswreng.Srefl.Test;
 
 public partial class TestIPropAccessor{
 	public ITestNode RegisterGetSetterNames(ITestNode Node){

@@ -1,4 +1,4 @@
-using Tsinswreng.CsStrAcc;
+using Tsinswreng.Srefl;
 
 namespace UserDictCtxNs{
 
