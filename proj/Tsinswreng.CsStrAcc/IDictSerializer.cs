@@ -1,4 +1,5 @@
 using System.Collections;
+using Tsinswreng.CsCore;
 
 namespace Tsinswreng.CsStrAcc;
 
@@ -10,9 +11,25 @@ public interface ITypeConverter{
 	public obj? Convert(obj? Obj, Type Type);
 }
 
+[Doc(@$"
+deep serialize an object to a nested `IDictionary<str, obj?>` or `IList<obj?>`,
+or deserialize from that to obj
+")]
 public class DictSerializer{
 	public IDictionary<Type, ITypeConverter> Converters{get;set;}
 	public IDictionary<Type, IPropAccessor> PropAccessors{get;set;}
+	
+	public Func<Type, bool> IsPrimitiveType{get;set;} = (Type)=>{
+		return Type.IsPrimitive || Type == typeof(string);
+	};
+	
+	[Doc(@$"
+	deep serialize an object to a nested `IDictionary<str, obj?>` or `IList<obj?>`
+	#Params([],[if null, use `Obj.GetType()`])
+	#Rtn[
+	nested `IDictionary<str, obj?>` or IList<obj?>
+	]
+	")]
 	public obj? Serialize(
 		obj? Obj, Type? Type = null
 	){
@@ -23,8 +40,7 @@ public class DictSerializer{
 		if(Converters.TryGetValue(Type, out var Convtr)){
 			return Convtr.Convert(Obj, Type);
 		}
-		
-		if(Type.IsPrimitive || Type == typeof(string)){
+		if(IsPrimitiveType(Type)){
 			return Obj;
 		}
 		{
@@ -49,5 +65,4 @@ public class DictSerializer{
 			return R;
 		}
 	}
-	
 }
