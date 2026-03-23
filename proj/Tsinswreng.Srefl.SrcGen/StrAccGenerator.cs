@@ -77,13 +77,14 @@ public sealed class StrAccGenerator: ISourceGenerator{
 	//sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr> Type_InstMkr {");
 	//sb.AppendLine("\t\tget => this.InstMkrReg.Type_InstMkr;");
 	//sb.AppendLine("\t\tset => this.InstMkrReg.Type_InstMkr = value;");
-	sb.AppendLine("\t}");
+	//sb.AppendLine("\t}");
 
-	AppendMgrClass(sb, targetTypes);
-		AppendInstMkrRegClass(sb, targetTypes);
+		AppendMgrClass(sb, targetTypes);
+		// InstMgr/InstMkr generation disabled.
+		//AppendInstMkrRegClass(sb, targetTypes);
 		for(var i = 0; i < targetTypes.Count; i++){
 			AppendAccessorClass(sb, targetTypes[i], i);
-			AppendInstMkrClass(sb, targetTypes[i], i);
+			//AppendInstMkrClass(sb, targetTypes[i], i);
 		}
 
 		sb.AppendLine("}");
@@ -108,37 +109,35 @@ public sealed class StrAccGenerator: ISourceGenerator{
 		sb.AppendLine("\t}");
 	}
 
-	private static void AppendInstMkrRegClass(StringBuilder sb, IReadOnlyList<INamedTypeSymbol> targetTypes){
-		return;
-		sb.AppendLine("\tprivate sealed class __GeneratedInstMkrReg: global::Tsinswreng.Srefl.IInstMkrReg{");
-		sb.AppendLine("\t\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr> Type_InstMkr { get; set; }");
-		sb.AppendLine("\t\tpublic __GeneratedInstMkrReg(){");
-		sb.AppendLine("\t\t\tType_InstMkr = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr>{");
-		for(var i = 0; i < targetTypes.Count; i++){
-			var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetTypes[i]);
-			sb.AppendLine($"\t\t\t\t[typeof({typeExpr})] = __GeneratedInstMkr_{i}.Inst,");
-		}
-		sb.AppendLine("\t\t\t};");
-		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t}");
-	}
+	//private static void AppendInstMkrRegClass(StringBuilder sb, IReadOnlyList<INamedTypeSymbol> targetTypes){
+	//	sb.AppendLine("\tprivate sealed class __GeneratedInstMkrReg: global::Tsinswreng.Srefl.IInstMkrReg{");
+	//	sb.AppendLine("\t\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr> Type_InstMkr { get; set; }");
+	//	sb.AppendLine("\t\tpublic __GeneratedInstMkrReg(){");
+	//	sb.AppendLine("\t\t\tType_InstMkr = new global::System.Collections.Generic.Dictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr>{");
+	//	for(var i = 0; i < targetTypes.Count; i++){
+	//		var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetTypes[i]);
+	//		sb.AppendLine($"\t\t\t\t[typeof({typeExpr})] = __GeneratedInstMkr_{i}.Inst,");
+	//	}
+	//	sb.AppendLine("\t\t\t};");
+	//	sb.AppendLine("\t\t}");
+	//	sb.AppendLine("\t}");
+	//}
 
-	private static void AppendInstMkrClass(StringBuilder sb, INamedTypeSymbol targetType, int index){
-		return;
-		var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetType);
-		var elemType = CodeTool.ResolveFullTypeFitsTypeof(targetType);
-		
-		sb.AppendLine($"\tprivate sealed class __GeneratedInstMkr_{index}: global::Tsinswreng.Srefl.IInstMkr{{");
-		sb.AppendLine($"\t\tpublic static readonly __GeneratedInstMkr_{index} Inst = new __GeneratedInstMkr_{index}();");
-		sb.AppendLine($"\t\tpublic Type Target {{ get; set; }} = typeof({typeExpr});");
-		sb.AppendLine("\t\tpublic object MkInst(){");
-		sb.AppendLine($"\t\t\treturn new {typeExpr}();");
-		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t\tpublic object MkList(){");
-		sb.AppendLine($"\t\t\treturn new global::System.Collections.Generic.List<{typeExpr}>();");
-		sb.AppendLine("\t\t}");
-		sb.AppendLine("\t}");
-	}
+	//private static void AppendInstMkrClass(StringBuilder sb, INamedTypeSymbol targetType, int index){
+	//	var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetType);
+	//	var elemType = CodeTool.ResolveFullTypeFitsTypeof(targetType);
+	//
+	//	sb.AppendLine($"\tprivate sealed class __GeneratedInstMkr_{index}: global::Tsinswreng.Srefl.IInstMkr{{");
+	//	sb.AppendLine($"\t\tpublic static readonly __GeneratedInstMkr_{index} Inst = new __GeneratedInstMkr_{index}();");
+	//	sb.AppendLine($"\t\tpublic Type Target {{ get; set; }} = typeof({typeExpr});");
+	//	sb.AppendLine("\t\tpublic object MkInst(){");
+	//	sb.AppendLine($"\t\t\treturn new {typeExpr}();");
+	//	sb.AppendLine("\t\t}");
+	//	sb.AppendLine("\t\tpublic object MkList(){");
+	//	sb.AppendLine($"\t\t\treturn new global::System.Collections.Generic.List<{typeExpr}>();");
+	//	sb.AppendLine("\t\t}");
+	//	sb.AppendLine("\t}");
+	//}
 
 	private static void AppendAccessorClass(StringBuilder sb, INamedTypeSymbol targetType, int index){
 		var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetType);
