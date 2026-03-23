@@ -62,21 +62,21 @@ public sealed class StrAccGenerator: ISourceGenerator{
 		}
 
 		AppendContainingTypesOpen(sb, hostType);
-		sb.AppendLine($"public partial class {hostType.Name}: global::{n.NsDictMapper}.IPropAccessorReg, global::Tsinswreng.Srefl.IInstMkrReg{{");
+		sb.AppendLine($"public partial class {hostType.Name}: global::{n.NsDictMapper}.IPropAccessorReg{{");//, global::Tsinswreng.Srefl.IInstMkrReg
 		sb.AppendLine("\tpublic global::Tsinswreng.Srefl.IPropAccessorReg PropAccessorReg { get; set; }");
-		sb.AppendLine("\tpublic global::Tsinswreng.Srefl.IInstMkrReg InstMkrReg { get; set; }");
+		//sb.AppendLine("\tpublic global::Tsinswreng.Srefl.IInstMkrReg InstMkrReg { get; set; }");
 		sb.AppendLine($"\tpublic {hostType.Name}(){{");
 		sb.AppendLine("\t\tthis.PropAccessorReg = new __GeneratedPropAccessorReg();");
-		sb.AppendLine("\t\tthis.InstMkrReg = new __GeneratedInstMkrReg();");
+		//sb.AppendLine("\t\tthis.InstMkrReg = new __GeneratedInstMkrReg();");
 		sb.AppendLine("\t}");
 		// 兼容旧代码：一些地方可能直接把 ctx 当作 mgr 使用
 		sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IPropAccessor> Type_PropAccessor {");
 		sb.AppendLine("\t\tget => this.PropAccessorReg.Type_PropAccessor;");
 		sb.AppendLine("\t\tset => this.PropAccessorReg.Type_PropAccessor = value;");
 		sb.AppendLine("\t}");
-	sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr> Type_InstMkr {");
-	sb.AppendLine("\t\tget => this.InstMkrReg.Type_InstMkr;");
-	sb.AppendLine("\t\tset => this.InstMkrReg.Type_InstMkr = value;");
+	//sb.AppendLine("\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr> Type_InstMkr {");
+	//sb.AppendLine("\t\tget => this.InstMkrReg.Type_InstMkr;");
+	//sb.AppendLine("\t\tset => this.InstMkrReg.Type_InstMkr = value;");
 	sb.AppendLine("\t}");
 
 	AppendMgrClass(sb, targetTypes);
@@ -109,6 +109,7 @@ public sealed class StrAccGenerator: ISourceGenerator{
 	}
 
 	private static void AppendInstMkrRegClass(StringBuilder sb, IReadOnlyList<INamedTypeSymbol> targetTypes){
+		return;
 		sb.AppendLine("\tprivate sealed class __GeneratedInstMkrReg: global::Tsinswreng.Srefl.IInstMkrReg{");
 		sb.AppendLine("\t\tpublic global::System.Collections.Generic.IDictionary<global::System.Type, global::Tsinswreng.Srefl.IInstMkr> Type_InstMkr { get; set; }");
 		sb.AppendLine("\t\tpublic __GeneratedInstMkrReg(){");
@@ -123,6 +124,7 @@ public sealed class StrAccGenerator: ISourceGenerator{
 	}
 
 	private static void AppendInstMkrClass(StringBuilder sb, INamedTypeSymbol targetType, int index){
+		return;
 		var typeExpr = CodeTool.ResolveFullTypeFitsTypeof(targetType);
 		var elemType = CodeTool.ResolveFullTypeFitsTypeof(targetType);
 		
