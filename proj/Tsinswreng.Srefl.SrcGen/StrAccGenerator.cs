@@ -49,6 +49,7 @@ public sealed class StrAccGenerator: ISourceGenerator{
 		var n = new ConstName();
 		var sb = new StringBuilder();
 		sb.AppendLine("#pragma warning disable CS8618, CS8600, CS8601, CS8602, CS8603, CS8604, CS8605");
+		sb.AppendLine("#nullable enable");
 		sb.AppendLine("using System;");
 		sb.AppendLine("using System.Collections.Generic;");
 		sb.AppendLine("using System.Linq;");

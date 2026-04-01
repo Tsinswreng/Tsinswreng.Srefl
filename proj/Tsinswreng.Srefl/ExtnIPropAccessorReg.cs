@@ -13,6 +13,15 @@ public static class ExtnIPropAccessorReg{
 			}
 			return accessor.TryGet(O, Key, out R);
 		}
+		
+		public bool TryGet<T>(T O, str Key, out obj? R){
+			R = null;
+			var Target = typeof(T);
+			if(!z.Type_PropAccessor.TryGetValue(Target, out var accessor)){
+				return false;
+			}
+			return accessor.TryGet(O, Key, out R);
+		}
 
 		public bool TrySet(obj? O, Type Target, str Key, obj? Value){
 			if(!z.Type_PropAccessor.TryGetValue(Target, out var accessor)){
