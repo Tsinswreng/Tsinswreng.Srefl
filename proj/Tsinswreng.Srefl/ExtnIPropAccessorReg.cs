@@ -29,6 +29,9 @@ public static class ExtnIPropAccessorReg{
 			}
 			return accessor.TrySet(O, Key, Value);
 		}
+		public bool TrySet<T>(T O, str Key, obj? Value){
+			return z.TrySet(O, typeof(T), Key, Value);
+		}
 
 		public IReadOnlyList<str> GetProps(Type Target, OptGetGetterNames? Opt = null){
 			if(!z.Type_PropAccessor.TryGetValue(Target, out var accessor)){
