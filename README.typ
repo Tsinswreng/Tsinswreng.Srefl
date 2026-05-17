@@ -1,3 +1,22 @@
+// #import "@preview/tsinswreng-auto-heading:0.1.0": auto-heading
+// #let H = auto-heading;
+
+// #H[Tsinswreng.Srefl][
+// 	Tsinswreng.Srefl 是一組“結構化反射”相關抽象。
+
+// 	它更偏向：
+
+// 	- 屬性訪問器抽象
+// 	- 對象實例構造器抽象
+// 	- 字典序列化/反序列化接口
+// 	- 配合註冊表或源生成器的映射協議
+
+// 	#H[安裝][
+// 		```bash
+// 		dotnet add package Tsinswreng.Srefl --version 0.0.1-alpha
+// 		```
+// 	]
+// ]
 ````md
 # Srefl
 Convert between `IDictionary<string,object?>` and C# object.
@@ -91,4 +110,5 @@ public  partial interface IDictMapperForOneType{
 
 
 ```
+
 ````
