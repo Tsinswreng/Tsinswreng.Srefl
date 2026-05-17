@@ -12,7 +12,7 @@ public partial class DictTypeSyntaxReceiver : ISyntaxReceiver {
 		if (syntaxNode is ClassDeclarationSyntax classDecl &&
 			classDecl.AttributeLists.Any(a =>
 				a.Attributes.Any(attr =>
-					attr.Name.ToString() ==  nameof(StrAccType) //"DictType"
+					attr.Name.ToString() ==  nameof(SreflType) //"DictType"
 				)
 			)
 		) {

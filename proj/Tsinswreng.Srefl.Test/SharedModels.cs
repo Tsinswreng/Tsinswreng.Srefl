@@ -67,11 +67,11 @@ namespace Tsinswreng.Srefl.Test{
 	}
 
 	/// 使用 StrAccType 收編測試模型，供源生成器識別。
-	[StrAccType(typeof(TopLevelNsModel))]
-	[StrAccType(typeof(Models.GeneralNsBaseModel))]
-	[StrAccType(typeof(Models.GeneralNsDerivedModel))]
-	[StrAccType(typeof(Models.NestedTypeContainer.NestedPublicModel))]
-	[StrAccType(typeof(Models.NestedTypeContainer.NestedInternalModel))]
+	[SreflType(typeof(TopLevelNsModel))]
+	[SreflType(typeof(Models.GeneralNsBaseModel))]
+	[SreflType(typeof(Models.GeneralNsDerivedModel))]
+	[SreflType(typeof(Models.NestedTypeContainer.NestedPublicModel))]
+	[SreflType(typeof(Models.NestedTypeContainer.NestedInternalModel))]
 	public partial class SharedModelStrAccRegistry{
 		public static SharedModelStrAccRegistry Inst=>field??=new SharedModelStrAccRegistry();
 	}

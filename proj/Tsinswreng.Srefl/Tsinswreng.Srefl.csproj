@@ -9,7 +9,7 @@
 		<LangVersion>latest</LangVersion>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<PackageId>Tsinswreng.Srefl</PackageId>
-		<Version>0.0.1-alpha</Version>
+		<Version>1.0.1-alpha</Version>
 		<Authors>Tsinswreng</Authors>
 		<Description>Structured reflection abstractions for property access, instance creation, and dictionary serialization.</Description>
 		<PackageTags>Reflection;Serialization;Accessors;SourceGeneration</PackageTags>
@@ -31,23 +31,5 @@
 	<ItemGroup>
 		<None Include="..\..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
-
-	<Target Name="BuildSourceGeneratorForPack" BeforeTargets="GenerateNuspec">
-		<MSBuild
-			Projects="..\Tsinswreng.Srefl.SrcGen\Tsinswreng.Srefl.SrcGen.csproj"
-			Targets="Build"
-			Properties="Configuration=$(Configuration);BuildProjectReferences=false" />
-
-		<ItemGroup>
-			<None Include="..\Tsinswreng.Srefl.SrcGen\bin\$(Configuration)\netstandard2.0\Tsinswreng.Srefl.SrcGen.dll"
-				Pack="true"
-				PackagePath="analyzers/dotnet/cs"
-				Visible="false" />
-			<None Include="$(TargetPath)"
-				Pack="true"
-				PackagePath="analyzers/dotnet/cs"
-				Visible="false" />
-		</ItemGroup>
-	</Target>
 
 </Project>

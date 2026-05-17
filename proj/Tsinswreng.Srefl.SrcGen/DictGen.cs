@@ -19,7 +19,7 @@ public partial class DictGen: ISourceGenerator{
 			var allTypes = ExeCtx.Compilation.SourceModule.GlobalNamespace.GetAllNamedTypes();
 			foreach (var type in allTypes) {
 				// 判斷是否有 [DictType] 特性
-				if (!type.GetAttributes().Any(attr => attr.AttributeClass?.Name == nameof(StrAccType))) {
+				if (!type.GetAttributes().Any(attr => attr.AttributeClass?.Name == nameof(SreflType))) {
 					continue;
 				}
 				var CtxDictCtx = new CtxDictCtx(

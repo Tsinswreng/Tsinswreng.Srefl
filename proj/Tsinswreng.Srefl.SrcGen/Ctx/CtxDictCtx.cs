@@ -254,12 +254,12 @@ public partial class {{ClsName}}: {{N.NsDictMapper}}.{{N.DictMapper}} {
 /// <returns></returns>
 [Obsolete("改用GetDictTypeAttrParam 緣此不支持Recursive參數")]
 	public static IEnumerable<INamedTypeSymbol> YieldTypeWithDictTypeAttr(INamedTypeSymbol classSymbol) {
-		return CodeTool.YieldTypeWithAttr(classSymbol, nameof(StrAccType));
+		return CodeTool.YieldTypeWithAttr(classSymbol, nameof(SreflType));
 	}
 
 //TODO 是否需給targetType做去褈?
 	public static IEnumerable<IParamDictType> GetDictTypeAttrParams(INamedTypeSymbol classSymbol){
-		var literalAttrName = nameof(StrAccType);
+		var literalAttrName = nameof(SreflType);
 		var attributes = classSymbol.GetAttributes()
 			.Where(attr => attr.AttributeClass?.Name == literalAttrName);
 

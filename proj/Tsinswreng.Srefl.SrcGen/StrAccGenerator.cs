@@ -30,7 +30,7 @@ public sealed class StrAccGenerator: ISourceGenerator{
 
 	private static IEnumerable<INamedTypeSymbol> GetRegisteredTargetTypes(INamedTypeSymbol hostType){
 		var attrs = hostType.GetAttributes()
-			.Where(a => a.AttributeClass?.Name == nameof(StrAccType) || a.AttributeClass?.Name == nameof(StrAccType) + "Attribute");
+			.Where(a => a.AttributeClass?.Name == nameof(SreflType) || a.AttributeClass?.Name == nameof(SreflType) + "Attribute");
 
 		var seen = new HashSet<string>(StringComparer.Ordinal);
 		foreach(var attr in attrs){
