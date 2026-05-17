@@ -9,7 +9,7 @@
 		<LangVersion>latest</LangVersion>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<PackageId>Tsinswreng.Srefl</PackageId>
-		<Version>1.0.1-alpha</Version>
+		<Version>1.0.2-alpha</Version>
 		<Authors>Tsinswreng</Authors>
 		<Description>Structured reflection abstractions for property access, instance creation, and dictionary serialization.</Description>
 		<PackageTags>Reflection;Serialization;Accessors;SourceGeneration</PackageTags>

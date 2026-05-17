@@ -7,7 +7,6 @@
 		<!-- <ImplicitUsings>enable</ImplicitUsings> -->
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<!-- <PublishAot>true</PublishAot> -->
@@ -15,7 +14,7 @@
 		<LangVersion>latest</LangVersion>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<PackageId>Tsinswreng.Srefl.SrcGen</PackageId>
-		<Version>1.0.1-alpha</Version>
+		<Version>1.0.2-alpha</Version>
 		<Authors>Tsinswreng</Authors>
 		<Description>Source generator package for Tsinswreng.Srefl.</Description>
 		<PackageTags>SourceGenerator;Analyzer;Reflection;Serialization</PackageTags>
@@ -37,26 +36,6 @@
 	<ItemGroup>
 		<ProjectReference Include="../Tsinswreng.Srefl/Tsinswreng.Srefl.csproj" />
 	</ItemGroup>
-
-	<Target Name="BuildMainAssemblyForAnalyzerPack" BeforeTargets="GenerateNuspec">
-		<MSBuild
-			Projects="..\Tsinswreng.Srefl\Tsinswreng.Srefl.csproj"
-			Targets="Build"
-			Properties="Configuration=$(Configuration);BuildProjectReferences=false" />
-	</Target>
-
-	<ItemGroup>
-		<None Include="$(TargetPath)"
-			Pack="true"
-			PackagePath="analyzers/dotnet/cs"
-			Visible="false" />
-		<None Include="..\Tsinswreng.Srefl\bin\$(Configuration)\netstandard2.0\Tsinswreng.Srefl.dll"
-			Pack="true"
-			PackagePath="analyzers/dotnet/cs"
-			Visible="false"
-			Condition="Exists('..\Tsinswreng.Srefl\bin\$(Configuration)\netstandard2.0\Tsinswreng.Srefl.dll')" />
-	</ItemGroup>
-
 
 	<!-- <ItemGroup>
 	<Compile Remove="Generated\**\*.cs" />
