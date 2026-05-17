@@ -7,6 +7,8 @@
 		<!-- <ImplicitUsings>enable</ImplicitUsings> -->
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<!-- <PublishAot>true</PublishAot> -->
@@ -14,7 +16,7 @@
 		<LangVersion>latest</LangVersion>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<PackageId>Tsinswreng.Srefl.SrcGen</PackageId>
-		<Version>1.0.2-alpha</Version>
+		<Version>1.0.5-alpha</Version>
 		<Authors>Tsinswreng</Authors>
 		<Description>Source generator package for Tsinswreng.Srefl.</Description>
 		<PackageTags>SourceGenerator;Analyzer;Reflection;Serialization</PackageTags>
@@ -22,6 +24,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Tsinswreng.Srefl" Version="1.0.2-alpha" />
+		<PackageReference Update="Tsinswreng.CsCore" GeneratePathProperty="true" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" PrivateAssets="all" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
@@ -34,7 +38,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="../Tsinswreng.Srefl/Tsinswreng.Srefl.csproj" />
+		<None Include="$(OutputPath)\Tsinswreng.Srefl.SrcGen.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="$(OutputPath)\Tsinswreng.Srefl.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<None Include="$(PkgTsinswreng_CsCore)\lib\netstandard2.0\Tsinswreng.CsCore.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 	</ItemGroup>
 
 	<!-- <ItemGroup>
