@@ -9,7 +9,8 @@ public class StrAccTestMgr: DiEtTestMgr{
 		Test = this.TestNode;
 		this.RegisterTester<TestIPropAccessor>();
 		this.RegisterTester<TestIPropAccessorReg>();
-		this.RegisterTester<TestIInstMkrReg>();
+		// 當前 SrcGen 只生成 PropAccessorReg，尚未生成 InstMkrReg，
+		// 因此先不把 TestIInstMkrReg 掛進測試樹。
 		return Test;
 	}
 }
